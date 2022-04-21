@@ -10,13 +10,11 @@ end
 
 # Création de l'array contenant les mails des mairies.
 def get_townhall_email(url)
-  array_townhall_email = []
+
  page = scrapping(url)
-  page.xpath("/html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]").each do |result|
-    array_townhall_email << result.text
-    end
-  puts array_townhall_email
-  return array_townhall_email
+  townhall_email = page.xpath("/html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]").text
+  puts townhall_email.class
+  return townhall_email
 end
 
 # Création de l'array contenant les URL des mairies.
