@@ -30,33 +30,24 @@ def get_townhall_url(page)
   return array_of_urls
 end
 
-def get_townhall_names(page)
-  #page = Nokogiri::HTML(URI.open('https://www.annuaire-des-mairies.com/val-d-oise.html'))
+#def get_townhall_names(page)
   
-  array_of_names = []
+#  array_of_names = []
 
-  array_of_names = page.xpath('//a[@class="lientxt"]').map{|x| x.text}
-  puts array_of_names
-end
+#  array_of_names = page.xpath('//a[@class="lientxt"]').map{|x| x.text}
+#  puts array_of_names
+#end
 
-def get_townhall_email_all(array_townhall_email,array_of_urls)
+def program
+
+  page = scrapping("https://www.annuaire-des-mairies.com/val-d-oise.html")
+
   array_of_urls.each do |url| 
     get_townhall_email("https://www.annuaire-des-mairies.com/95/" + url)
     array_mail << result.text
   end
-  puts array_mail
-  return array_mail
-end
 
-def program
-  
-  page_mail = scrapping("https://www.annuaire-des-mairies.com/95/avernes.html")
-  page_url = scrapping("https://www.annuaire-des-mairies.com/val-d-oise.html")
-  page_names = scrapping("https://www.annuaire-des-mairies.com/val-d-oise.html")
-  array_townhall_email = get_townhall_email(page_mail)
-  array_of_urls = get_townhall_url(page_url)
-  get_townhall_names(page_names)
-  get_townhall_email_all(array_townhall_email,array_of_urls)
+  puts array_mail
 end
 
 program
